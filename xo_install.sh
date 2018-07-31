@@ -18,6 +18,9 @@ xo_server_dir="/opt/xen-orchestra"
 systemd_service_dir="/lib/systemd/system"
 xo_service="xo-server.service"
 
+#Add redis-server repo
+/usr/bin/add-apt-repository --yes ppa:chris-lea/redis-server
+
 #Ensure that git and curl are installed
 /usr/bin/apt-get update
 /usr/bin/apt-get --yes install git curl
