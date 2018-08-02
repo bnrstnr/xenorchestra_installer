@@ -7,8 +7,8 @@
 totalk=$(awk '/^MemTotal:/{print $2}' /proc/meminfo)
 if [ "$totalk" -lt "1000000" ]; then echo "XOCE Requires at least 1GB Memory!"; exit 1; fi 
 
-distro=$(/usr/bin/lsb_release -is)
-if [ "$distro" = "Ubuntu" ]; then /usr/bin/add-apt-repository multiverse; fi
+#distro=$(/usr/bin/lsb_release -is)
+#if [ "$distro" = "Ubuntu" ]; then /usr/bin/add-apt-repository multiverse; fi
 
 xo_branch="master"
 xo_server="https://github.com/vatesfr/xen-orchestra"
@@ -40,7 +40,7 @@ echo "$yarn_repo" | tee /etc/apt/sources.list.d/yarn.list
 /usr/local/bin/n lts
 
 #Install XO dependencies
-/usr/bin/apt-get install --yes build-essential redis-server libpng-dev git python-minimal libvhdi-utils nfs-common
+/usr/bin/apt-get install --yes build-essential redis-server libpng-dev git python-minimal libvhdi-utils nfs-common || echo "Aborting due to failure to install dependencies. Please see troubleshooting guide." && exit
 
 /usr/bin/git clone -b $xo_branch $xo_server
 
