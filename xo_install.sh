@@ -7,6 +7,7 @@
 totalk=$(awk '/^MemTotal:/{print $2}' /proc/meminfo)
 if [ "$totalk" -lt "1000000" ]; then echo "XOCE Requires at least 1GB Memory!"; exit 1; fi 
 
+#Check for multiverse repo on Ubuntu
 distro=$(/usr/bin/lsb_release -is)
 if [ "$distro" = "Ubuntu" ]; then /usr/bin/add-apt-repository multiverse; fi
 
